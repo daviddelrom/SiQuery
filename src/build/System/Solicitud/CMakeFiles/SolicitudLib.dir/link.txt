@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../source/obj/libSolicitudLib.a CMakeFiles/SolicitudLib.dir/Solicitud.cpp.o
+/usr/bin/ranlib ../../source/obj/libSolicitudLib.a

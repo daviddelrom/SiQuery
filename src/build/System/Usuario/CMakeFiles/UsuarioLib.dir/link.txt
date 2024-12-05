@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../source/obj/libUsuarioLib.a CMakeFiles/UsuarioLib.dir/Usuario.cpp.o CMakeFiles/UsuarioLib.dir/Alumno.cpp.o CMakeFiles/UsuarioLib.dir/Profesor.cpp.o CMakeFiles/UsuarioLib.dir/Administrador.cpp.o
+/usr/bin/ranlib ../../source/obj/libUsuarioLib.a

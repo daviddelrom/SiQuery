@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../source/obj/libInformeLib.a CMakeFiles/InformeLib.dir/InformeIntercambio.cpp.o
+/usr/bin/ranlib ../../source/obj/libInformeLib.a
