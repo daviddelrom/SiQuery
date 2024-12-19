@@ -3,6 +3,10 @@ file(REMOVE_RECURSE
   "../../source/obj/libSolicitudLib.pdb"
   "CMakeFiles/SolicitudLib.dir/Solicitud.cpp.o"
   "CMakeFiles/SolicitudLib.dir/Solicitud.cpp.o.d"
+  "CMakeFiles/SolicitudLib.dir/SolicitudBeca.cpp.o"
+  "CMakeFiles/SolicitudLib.dir/SolicitudBeca.cpp.o.d"
+  "CMakeFiles/SolicitudLib.dir/SolicitudSicue.cpp.o"
+  "CMakeFiles/SolicitudLib.dir/SolicitudSicue.cpp.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

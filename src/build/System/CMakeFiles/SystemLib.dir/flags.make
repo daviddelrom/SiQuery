@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I/usr/include/mysql-cppconn/jdbc
 
 CXX_FLAGS = -std=gnu++17
 

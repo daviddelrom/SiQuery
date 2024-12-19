@@ -9,5 +9,11 @@ set(SYSTEM_SOURCES System.cpp)
 # Crear una biblioteca para el sistema
 add_library(SystemLib ${SYSTEM_SOURCES})
 
-# Enlazar con las bibliotecas de subdirectorios
-target_link_libraries(SystemLib UsuarioLib SolicitudLib InformeLib)
+# Incluir encabezados de MySQL Connector/C++
+target_include_directories(SystemLib PUBLIC /usr/include/mysql-cppconn/jdbc)
+
+# Enlazar con las bibliotecas de MySQL Connector/C++
+target_link_libraries(SystemLib mysqlcppconn)
+
+# Enlazar con las bibliotecas de subdirectorios y mysqlcppconn
+target_link_libraries(SystemLib mysqlcppconn UsuarioLib SolicitudLib InformeLib)

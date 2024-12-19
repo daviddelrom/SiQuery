@@ -83,17 +83,49 @@ System/Solicitud/CMakeFiles/SolicitudLib.dir/Solicitud.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SolicitudLib.dir/Solicitud.cpp.s"
 	cd /home/user/Escritorio/IS/src/build/System/Solicitud && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/Escritorio/IS/src/System/Solicitud/Solicitud.cpp -o CMakeFiles/SolicitudLib.dir/Solicitud.cpp.s
 
+System/Solicitud/CMakeFiles/SolicitudLib.dir/SolicitudBeca.cpp.o: System/Solicitud/CMakeFiles/SolicitudLib.dir/flags.make
+System/Solicitud/CMakeFiles/SolicitudLib.dir/SolicitudBeca.cpp.o: /home/user/Escritorio/IS/src/System/Solicitud/SolicitudBeca.cpp
+System/Solicitud/CMakeFiles/SolicitudLib.dir/SolicitudBeca.cpp.o: System/Solicitud/CMakeFiles/SolicitudLib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/Escritorio/IS/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object System/Solicitud/CMakeFiles/SolicitudLib.dir/SolicitudBeca.cpp.o"
+	cd /home/user/Escritorio/IS/src/build/System/Solicitud && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT System/Solicitud/CMakeFiles/SolicitudLib.dir/SolicitudBeca.cpp.o -MF CMakeFiles/SolicitudLib.dir/SolicitudBeca.cpp.o.d -o CMakeFiles/SolicitudLib.dir/SolicitudBeca.cpp.o -c /home/user/Escritorio/IS/src/System/Solicitud/SolicitudBeca.cpp
+
+System/Solicitud/CMakeFiles/SolicitudLib.dir/SolicitudBeca.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SolicitudLib.dir/SolicitudBeca.cpp.i"
+	cd /home/user/Escritorio/IS/src/build/System/Solicitud && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/Escritorio/IS/src/System/Solicitud/SolicitudBeca.cpp > CMakeFiles/SolicitudLib.dir/SolicitudBeca.cpp.i
+
+System/Solicitud/CMakeFiles/SolicitudLib.dir/SolicitudBeca.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SolicitudLib.dir/SolicitudBeca.cpp.s"
+	cd /home/user/Escritorio/IS/src/build/System/Solicitud && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/Escritorio/IS/src/System/Solicitud/SolicitudBeca.cpp -o CMakeFiles/SolicitudLib.dir/SolicitudBeca.cpp.s
+
+System/Solicitud/CMakeFiles/SolicitudLib.dir/SolicitudSicue.cpp.o: System/Solicitud/CMakeFiles/SolicitudLib.dir/flags.make
+System/Solicitud/CMakeFiles/SolicitudLib.dir/SolicitudSicue.cpp.o: /home/user/Escritorio/IS/src/System/Solicitud/SolicitudSicue.cpp
+System/Solicitud/CMakeFiles/SolicitudLib.dir/SolicitudSicue.cpp.o: System/Solicitud/CMakeFiles/SolicitudLib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/Escritorio/IS/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object System/Solicitud/CMakeFiles/SolicitudLib.dir/SolicitudSicue.cpp.o"
+	cd /home/user/Escritorio/IS/src/build/System/Solicitud && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT System/Solicitud/CMakeFiles/SolicitudLib.dir/SolicitudSicue.cpp.o -MF CMakeFiles/SolicitudLib.dir/SolicitudSicue.cpp.o.d -o CMakeFiles/SolicitudLib.dir/SolicitudSicue.cpp.o -c /home/user/Escritorio/IS/src/System/Solicitud/SolicitudSicue.cpp
+
+System/Solicitud/CMakeFiles/SolicitudLib.dir/SolicitudSicue.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SolicitudLib.dir/SolicitudSicue.cpp.i"
+	cd /home/user/Escritorio/IS/src/build/System/Solicitud && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/Escritorio/IS/src/System/Solicitud/SolicitudSicue.cpp > CMakeFiles/SolicitudLib.dir/SolicitudSicue.cpp.i
+
+System/Solicitud/CMakeFiles/SolicitudLib.dir/SolicitudSicue.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SolicitudLib.dir/SolicitudSicue.cpp.s"
+	cd /home/user/Escritorio/IS/src/build/System/Solicitud && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/Escritorio/IS/src/System/Solicitud/SolicitudSicue.cpp -o CMakeFiles/SolicitudLib.dir/SolicitudSicue.cpp.s
+
 # Object files for target SolicitudLib
 SolicitudLib_OBJECTS = \
-"CMakeFiles/SolicitudLib.dir/Solicitud.cpp.o"
+"CMakeFiles/SolicitudLib.dir/Solicitud.cpp.o" \
+"CMakeFiles/SolicitudLib.dir/SolicitudBeca.cpp.o" \
+"CMakeFiles/SolicitudLib.dir/SolicitudSicue.cpp.o"
 
 # External object files for target SolicitudLib
 SolicitudLib_EXTERNAL_OBJECTS =
 
 source/obj/libSolicitudLib.a: System/Solicitud/CMakeFiles/SolicitudLib.dir/Solicitud.cpp.o
+source/obj/libSolicitudLib.a: System/Solicitud/CMakeFiles/SolicitudLib.dir/SolicitudBeca.cpp.o
+source/obj/libSolicitudLib.a: System/Solicitud/CMakeFiles/SolicitudLib.dir/SolicitudSicue.cpp.o
 source/obj/libSolicitudLib.a: System/Solicitud/CMakeFiles/SolicitudLib.dir/build.make
 source/obj/libSolicitudLib.a: System/Solicitud/CMakeFiles/SolicitudLib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/user/Escritorio/IS/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library ../../source/obj/libSolicitudLib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/user/Escritorio/IS/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library ../../source/obj/libSolicitudLib.a"
 	cd /home/user/Escritorio/IS/src/build/System/Solicitud && $(CMAKE_COMMAND) -P CMakeFiles/SolicitudLib.dir/cmake_clean_target.cmake
 	cd /home/user/Escritorio/IS/src/build/System/Solicitud && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SolicitudLib.dir/link.txt --verbose=$(VERBOSE)
 
