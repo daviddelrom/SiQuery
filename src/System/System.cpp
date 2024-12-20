@@ -312,23 +312,23 @@ bool System::tienePlazasDisponiblesParaProfesor(const std::string &universidad)
         if (universidad_id == -1)
         {
             std::cerr << "Error: No se encontró la universidad " << universidad << " en la base de datos." << std::endl;
-            return false;  // Si no se encuentra la universidad, devolver false
+            return false; // Si no se encuentra la universidad, devolver false
         }
 
         // Paso 2: Comprobar si hay plazas disponibles
         if (numero_ocupados_profesores < maximo_profesores)
         {
-            return true;  // Hay plazas disponibles
+            return true; // Hay plazas disponibles
         }
         else
         {
-            return false;  // No hay plazas disponibles
+            return false; // No hay plazas disponibles
         }
     }
     catch (sql::SQLException &e)
     {
         std::cerr << "Error al conectar o consultar la base de datos: " << e.what() << std::endl;
-        return false;  // En caso de error, devolvemos false
+        return false; // En caso de error, devolvemos false
     }
 }
 
@@ -445,7 +445,6 @@ std::string System::obtenerNombreUniversidadPorId(int universidadId)
 
     return nombreUniversidad; // Devuelve el nombre de la universidad o una cadena vacía si no se encuentra
 }
-
 
 std::vector<std::string> System::obtenerUniversidadesYaSolicitadas(const std::string &usuario)
 {
@@ -626,49 +625,76 @@ std::string System::obtenerCursosDeSolicitudes(const std::string &solicitante_id
     return primerCurso; // Retorna el primer curso encontrado (vacío si no se encontró ninguno)
 }
 
-std::vector<std::string> System::obtenerUniversidadesConPlazasDisponiblesParaAlumno(const std::string &campo)
+std::vector<std::string> System::obtenerUniversidadesConPlazasDisponiblesParaAlumno(const std::string &campo, int anioCurso)
 {
     std::vector<std::string> universidades;
 
     try
     {
-        // Paso 1: Obtener los nombres de universidades con plazas disponibles para el campo
-        sql::PreparedStatement *stmtCampo = this->getConnection()->prepareStatement(
-            "SELECT DISTINCT u.nombre "
-            "FROM Universidad u "
-            "JOIN Carrera c ON c.universidad_id = u.universidad_id "
-            "WHERE c.campo = ? " // Filtrar por el campo
-            "AND (u.maximo_alumnos - u.numero_ocupados_alumnos) > 0");
+        // Paso 1: Obtener los IDs de universidades con carreras en el campo especificado y año de curso válido
+        sql::PreparedStatement *stmtCarrera = this->getConnection()->prepareStatement(
+            "SELECT DISTINCT universidad_id "
+            "FROM Carrera "
+            "WHERE campo = ? "
+            "AND anioCurso >= ?");
 
-        // Establecer el parámetro para el campo
-        stmtCampo->setString(1, campo);
+        // Establecer los parámetros para la consulta
+        stmtCarrera->setString(1, campo);
+        stmtCarrera->setInt(2, anioCurso);
 
         // Ejecutar la consulta
-        sql::ResultSet *resCampo = stmtCampo->executeQuery();
+        sql::ResultSet *resCarrera = stmtCarrera->executeQuery();
 
-        // Almacenar las universidades con plazas disponibles
-        while (resCampo->next())
+        // Paso 2: Recorrer los IDs de las universidades y verificar la disponibilidad de plazas
+        while (resCarrera->next())
         {
-            std::string universidad = resCampo->getString("nombre");
-            universidades.push_back(universidad);
+            int universidadId = resCarrera->getInt("universidad_id");
+
+            // Verificar si la universidad tiene plazas disponibles
+            sql::PreparedStatement *stmtPlazas = this->getConnection()->prepareStatement(
+                "SELECT (maximo_alumnos - numero_ocupados_alumnos) AS plazas_disponibles "
+                "FROM Universidad "
+                "WHERE universidad_id = ?");
+            stmtPlazas->setInt(1, universidadId);
+
+            sql::ResultSet *resPlazas = stmtPlazas->executeQuery();
+            if (resPlazas->next() && resPlazas->getInt("plazas_disponibles") > 0)
+            {
+                // Si hay plazas disponibles, obtener el nombre de la universidad
+                sql::PreparedStatement *stmtNombre = this->getConnection()->prepareStatement(
+                    "SELECT nombre FROM Universidad WHERE universidad_id = ?");
+                stmtNombre->setInt(1, universidadId);
+
+                sql::ResultSet *resNombre = stmtNombre->executeQuery();
+                if (resNombre->next())
+                {
+                    std::string universidad = resNombre->getString("nombre");
+                    universidades.push_back(universidad);
+                }
+
+                // Liberar recursos de la consulta de nombres
+                delete stmtNombre;
+                delete resNombre;
+            }
+
+            // Liberar recursos de la consulta de plazas
+            delete stmtPlazas;
+            delete resPlazas;
         }
 
-        // Liberar recursos
-        delete stmtCampo;
-        delete resCampo;
+        // Liberar recursos de la consulta principal
+        delete stmtCarrera;
+        delete resCarrera;
 
         return universidades;
-
     }
     catch (sql::SQLException &e)
     {
-        std::cerr << "Error al conectar o consultar la base de datos: " << e.what() << std::endl;
+        std::cerr << "Error al conectar o consultar la base de datos: AQUI " << e.what() << std::endl;
     }
 
     return universidades; // Si hubo algún error, devolver un vector vacío
 }
-
-
 
 void System::insertarSolicitudesSicueAlumno(int solicitante_id, const std::string &nombre_solicitante, const std::string &universidad_origen, const std::vector<std::string> &universidades_destino, const std::string &carrera, const std::string &curso)
 {
@@ -676,27 +702,22 @@ void System::insertarSolicitudesSicueAlumno(int solicitante_id, const std::strin
     {
         // Paso 1: Obtener el año de curso del alumno
         int añoCursoAlumno = this->obtenerAñoCursoAlumno(nombre_solicitante, carrera);
-        
+
         // Verificar que el curso solicitado sea compatible con el año de curso del alumno
-        std::string añoCursoSolicitado = curso.substr(0, 4);  // Obtener el año de la solicitud de curso (YYYY)
-        if (std::stoi(añoCursoSolicitado) <= añoCursoAlumno) {
+        std::string añoCursoSolicitado = curso.substr(0, 4); // Obtener el año de la solicitud de curso (YYYY)
+        if (std::stoi(añoCursoSolicitado) <= añoCursoAlumno)
+        {
             std::cerr << "El año del curso solicitado no es válido para el alumno (no puede solicitar SICUE para un año inferior o igual al suyo).\n";
-            return;  // Salir si el año del curso solicitado no es válido
+            return; // Salir si el año del curso solicitado no es válido
         }
 
         // Paso 2: Verificar si hay plazas disponibles en las universidades de destino
         for (const auto &universidad_destino : universidades_destino)
         {
-            if (!esPlazaDisponibleParaCurso(universidad_destino, carrera, añoCursoAlumno))
-            {
-                std::cerr << "No hay plazas disponibles para la carrera " << carrera
-                          << " en la universidad " << universidad_destino << " para el año " << añoCursoAlumno << ".\n";
-                continue;  // Saltar a la siguiente universidad si no hay plazas disponibles
-            }
 
             // Paso 3: Insertar la solicitud SICUE en la tabla SolicitudSicueAlumno
             sql::PreparedStatement *stmtSolicitud = this->getConnection()->prepareStatement(
-                "INSERT INTO SolicitudSicueAlumno (nombre_solicitante, solicitante_id, universidad_origen, universidad_destino, carrera, curso, estado_solicitud, fecha_solicitud) "
+                "INSERT INTO SolicitudSicueALUMNO (nombre_solicitante, solicitante_id, universidad_origen, universidad_destino, carrera, curso, estado_solicitud, fecha_solicitud) "
                 "VALUES (?, ?, ?, ?, ?, ?, 'Pendiente', NOW())");
 
             // Establecer los parámetros de la solicitud
@@ -751,7 +772,7 @@ void System::insertarSolicitudesSicueAlumno(int solicitante_id, const std::strin
     }
 }
 
-int System::obtenerIdUsuarioPorUsuario(const std::string& usuario)
+int System::obtenerIdUsuarioPorUsuario(const std::string &usuario)
 {
     try
     {
@@ -873,8 +894,8 @@ int System::obtenerAñoCursoAlumno(const std::string &usuario, const std::string
             "WHERE User.nombre = ? AND Alumno.carrera = ?");
 
         // Establecer los parámetros de la consulta
-        stmt->setString(1, usuario);  // Nombre del usuario
-        stmt->setString(2, carrera);  // Carrera del alumno
+        stmt->setString(1, usuario); // Nombre del usuario
+        stmt->setString(2, carrera); // Carrera del alumno
 
         // Ejecutar la consulta
         sql::ResultSet *res = stmt->executeQuery();
@@ -946,31 +967,105 @@ std::string System::obtenerCarreraPorIdUsuario(int userId)
     }
 }
 
-std::string System::obtenerCursoAcademicoPorIdUsuario(int idUsuario) {
-    try {
+std::string System::obtenerNombreUniversidadPorCarrera(const std::string &carrera)
+{
+    try
+    {
+        // Paso 1: Obtener el universidad_id desde la tabla Carrera
+        sql::PreparedStatement *stmtCarrera = this->getConnection()->prepareStatement(
+            "SELECT universidad_id FROM Carrera "
+            "WHERE carrera = ?");
+
+        // Establecer el parámetro de la carrera
+        stmtCarrera->setString(1, carrera);
+
+        // Ejecutar la consulta
+        sql::ResultSet *resCarrera = stmtCarrera->executeQuery();
+
+        if (resCarrera->next())
+        {
+            // Obtener el universidad_id como entero
+            int universidadId = resCarrera->getInt("universidad_id");
+
+            delete stmtCarrera;
+            delete resCarrera;
+
+            // Paso 2: Usar el universidad_id para obtener el nombre de la universidad desde la tabla Universidad
+            sql::PreparedStatement *stmtUniversidad = this->getConnection()->prepareStatement(
+                "SELECT nombre FROM Universidad "
+                "WHERE universidad_id = ?");
+
+            stmtUniversidad->setInt(1, universidadId);
+
+            sql::ResultSet *resUniversidad = stmtUniversidad->executeQuery();
+
+            if (resUniversidad->next())
+            {
+                // Obtener el nombre de la universidad
+                std::string nombreUniversidad = resUniversidad->getString("nombre");
+
+                delete stmtUniversidad;
+                delete resUniversidad;
+
+                return nombreUniversidad; // Devolver el nombre de la universidad
+            }
+            else
+            {
+                delete stmtUniversidad;
+                delete resUniversidad;
+
+                std::cout << "No se encontró la universidad con el ID especificado.\n";
+                return ""; // Si no se encuentra la universidad, devolver una cadena vacía
+            }
+        }
+        else
+        {
+            delete stmtCarrera;
+            delete resCarrera;
+
+            std::cout << "No se encontró una carrera con el nombre especificado.\n";
+            return ""; // Si no se encuentra la carrera, devolver una cadena vacía
+        }
+    }
+    catch (sql::SQLException &e)
+    {
+        std::cerr << "Error al consultar la base de datos: " << e.what() << std::endl;
+        return ""; // En caso de error, devolver una cadena vacía
+    }
+}
+
+std::string System::obtenerCursoAcademicoPorIdUsuario(int idUsuario)
+{
+    try
+    {
         // Preparar la consulta SQL para obtener el curso académico del usuario
-        sql::PreparedStatement* stmt = this->getConnection()->prepareStatement(
+        sql::PreparedStatement *stmt = this->getConnection()->prepareStatement(
             "SELECT curso_academico FROM User WHERE user_id = ?");
 
         // Establecer el ID del usuario en la consulta
         stmt->setInt(1, idUsuario);
 
         // Ejecutar la consulta
-        sql::ResultSet* res = stmt->executeQuery();
+        sql::ResultSet *res = stmt->executeQuery();
 
-        if (res->next()) { // Si se encuentra el usuario
+        if (res->next())
+        { // Si se encuentra el usuario
             // Obtener el curso académico
             std::string curso_academico = res->getString("curso_academico");
 
             delete stmt;
             delete res;
             return curso_academico; // Devolver el curso académico
-        } else {
+        }
+        else
+        {
             delete stmt;
             delete res;
             return ""; // No se encontró el usuario
         }
-    } catch (sql::SQLException &e) {
+    }
+    catch (sql::SQLException &e)
+    {
         std::cerr << "Error al conectar o consultar la base de datos: " << e.what() << std::endl;
         return ""; // Error de conexión o consulta
     }
@@ -1024,18 +1119,13 @@ bool System::esPlazaDisponibleParaCurso(const std::string &universidad, const st
 {
     try
     {
-        // Preparar la consulta SQL para comprobar la disponibilidad de plazas
+        // Preparar la consulta SQL para obtener los datos de la universidad y verificar disponibilidad de plazas
         sql::PreparedStatement *stmt = this->getConnection()->prepareStatement(
             "SELECT u.numero_ocupados_alumnos, u.maximo_alumnos "
             "FROM Universidad u "
-            "JOIN Carrera c ON c.universidad_id = u.universidad_id "
-            "WHERE u.nombre = ? "
-            "AND c.nombre_carrera = ? "
-            "AND c.anioCurso = ?");
+            "WHERE u.nombre = ?");
 
-        stmt->setString(1, universidad);    // Universidad
-        stmt->setString(2, carrera);        // Carrera
-        stmt->setInt(3, añoCurso);          // Año de curso
+        stmt->setString(1, universidad); // Establecer el nombre de la universidad
 
         // Ejecutar la consulta
         sql::ResultSet *res = stmt->executeQuery();
@@ -1047,12 +1137,12 @@ bool System::esPlazaDisponibleParaCurso(const std::string &universidad, const st
             int maximoAlumnos = res->getInt("maximo_alumnos");
 
             // Si el número de alumnos ocupados es menor que el máximo permitido, hay plazas disponibles
-            if (numeroOcupados < maximoAlumnos)
+            if ((maximoAlumnos - numeroOcupados) > 0)
             {
                 // Liberar recursos
                 delete stmt;
                 delete res;
-                return true;  // Hay plazas disponibles
+                return true; // Hay plazas disponibles
             }
         }
 
@@ -1060,12 +1150,12 @@ bool System::esPlazaDisponibleParaCurso(const std::string &universidad, const st
         delete stmt;
         delete res;
 
-        return false;  // No hay plazas disponibles
+        return false; // No hay plazas disponibles
     }
     catch (sql::SQLException &e)
     {
         std::cerr << "Error al conectar o consultar la base de datos: " << e.what() << std::endl;
-        return false;  // Si ocurre un error, no consideramos que haya plazas disponibles
+        return false; // Si ocurre un error, no consideramos que haya plazas disponibles
     }
 }
 
@@ -1098,7 +1188,6 @@ std::string System::obtenerCampoPorCarrera(const std::string &nombre_carrera)
         delete res;
 
         return campo;
-
     }
     catch (sql::SQLException &e)
     {

@@ -1,7 +1,6 @@
 -- Eliminar las tablas si existen
 DROP TABLE IF EXISTS SolicitudSicueALUMNO;
 DROP TABLE IF EXISTS SolicitudSicueProfesor;
-DROP TABLE IF EXISTS SolicitudBeca;
 DROP TABLE IF EXISTS Profesor;
 DROP TABLE IF EXISTS Alumno;
 DROP TABLE IF EXISTS User;
@@ -83,16 +82,6 @@ CREATE TABLE IF NOT EXISTS SolicitudSicueALUMNO (
     curso VARCHAR(255),
     estado_solicitud ENUM('Pendiente', 'Aceptada', 'Rechazada', 'Inactiva') DEFAULT 'Pendiente',
     fecha_solicitud TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
-);
-
-CREATE TABLE IF NOT EXISTS SolicitudBeca(
-    solicitud_id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre_solicitante VARCHAR(255) NOT NULL,
-    solicitante_id INT,
-    carrera VARCHAR(255), 
-    curso VARCHAR(255), 
-    estado_solicitud ENUM('Pendiente', 'Aceptada', 'Rechazada', 'Inactiva') DEFAULT 'Pendiente',
-    fecha_solicitud TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Inserciones para la tabla Carrera con la asociación correcta de universidad_id y campo
@@ -201,3 +190,18 @@ INSERT INTO Profesor (user_id, departamento) VALUES
 (10, 'Ciencias Exactas'),
 (1, 'Ingeniería Electrónica'),
 (7, 'Economía');
+
+-- Insertar datos en la tabla Universidad
+-- Insertar datos en la tabla Universidad
+INSERT INTO Universidad (nombre, direccion, ciudad, maximo_alumnos, numero_ocupados_alumnos, maximo_profesores, numero_ocupados_profesores)
+VALUES 
+('Universidad Complutense de Madrid', 'Av. Séneca, 2', 'Madrid', 1, 0, 1, 0),
+('Universidad Politécnica de Cataluña', 'Calle Jordi Girona, 31', 'Barcelona', 1, 0, 1, 0),
+('Universidad de Sevilla', 'Calle San Fernando, 4', 'Sevilla', 1, 0, 1, 0),
+('Universidad de Salamanca', 'Calle Libreros, 19', 'Salamanca', 1, 0, 1, 0),
+('Universidad Autónoma de Madrid', 'Calle Einstein, 1', 'Madrid', 1, 0, 1, 0),
+('Universidad de Zaragoza', 'Calle Pedro Cerbuna, 12', 'Zaragoza', 1, 0, 1, 0),
+('Universidad de Granada', 'Calle Cuesta del Hospicio, 2', 'Granada', 1, 0, 1, 0),
+('Universidad de Valencia', 'Av. Blasco Ibáñez, 13', 'Valencia', 1, 0, 1, 0),
+('Universidad de Oviedo', 'Calle San Francisco, 3', 'Oviedo', 1, 0, 1, 0),
+('Universidad de Alicante', 'Calle San Vicente del Raspeig, s/n', 'Alicante', 1, 0, 1, 0);

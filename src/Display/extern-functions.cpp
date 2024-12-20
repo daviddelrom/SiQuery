@@ -321,18 +321,18 @@ void solicitudSicueAlumno(Alumno alumno)
     System system; // Crear una instancia de la clase System
     std::vector<std::string> universidadesDisponibles;
     int alumno_id = system.obtenerIdUsuarioPorUsuario(alumno.getUsuario());
-    
+
     // Obtener el campo de la carrera a partir del alumno
     std::string nombre_carrera = system.obtenerCarreraPorIdUsuario(alumno_id);
+    std::string nombre_universidad = system.obtenerNombreUniversidadPorCarrera(nombre_carrera);
     std::string campo = system.obtenerCampoPorCarrera(nombre_carrera);
 
-    
     // Obtener universidades con plazas disponibles para el campo
-    universidadesDisponibles = system.obtenerUniversidadesConPlazasDisponiblesParaAlumno(campo);
-    
+    universidadesDisponibles = system.obtenerUniversidadesConPlazasDisponiblesParaAlumno(campo, system.obtenerAnyoAcademicoPorIdUsuario(alumno_id));
+
     // Eliminar la universidad de origen del alumno
     universidadesDisponibles.erase(
-        std::remove(universidadesDisponibles.begin(), universidadesDisponibles.end(), alumno.getUniversidadOrigen()),
+        std::remove(universidadesDisponibles.begin(), universidadesDisponibles.end(), nombre_universidad),
         universidadesDisponibles.end());
 
     // Obtener las universidades ya solicitadas por el alumno

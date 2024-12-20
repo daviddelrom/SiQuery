@@ -53,7 +53,7 @@ public:
     void actualizarPlazasOcupadas(const std::string &universidadOrigen, const std::string &universidadDestino);
     std::string obtenerCursosDeSolicitudes(const std::string &solicitante_id);
     bool tienePlazasDisponiblesParaProfesor(const std::string &universidad);
-    std::vector<std::string> obtenerUniversidadesConPlazasDisponiblesParaAlumno(const std::string &carrera);
+    std::vector<std::string> obtenerUniversidadesConPlazasDisponiblesParaAlumno(const std::string &campo, int anioCurso);
     std::string obtenerNombreUniversidadPorId(int universidadId);
     int obtenerUniversidadOrigenProfesor(const std::string &nombreProfesor);
     void insertarSolicitudesSicueAlumno(int solicitante_id, const std::string &nombre_solicitante, const std::string &universidad_origen, const std::vector<std::string> &universidades_destino, const std::string &carrera, const std::string &curso);
@@ -65,7 +65,7 @@ public:
     std::string obtenerCursoAcademicoPorIdUsuario(int idUsuario);
     std::vector<std::string> obtenerUniversidadesYaSolicitadasAlumno(const std::string &usuario);
     bool esPlazaDisponibleParaCurso(const std::string &universidad, const std::string &carrera, int añoCurso);
-
+    std::string obtenerNombreUniversidadPorCarrera(const std::string &carrera);
     std::string obtenerCampoPorCarrera(const std::string &nombre_carrera);
 };
 #endif
