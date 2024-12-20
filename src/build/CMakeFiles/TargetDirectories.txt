@@ -12,6 +12,3 @@
 /home/user/Escritorio/IS/src/build/System/Solicitud/CMakeFiles/SolicitudLib.dir
 /home/user/Escritorio/IS/src/build/System/Solicitud/CMakeFiles/edit_cache.dir
 /home/user/Escritorio/IS/src/build/System/Solicitud/CMakeFiles/rebuild_cache.dir
-/home/user/Escritorio/IS/src/build/System/Informe/CMakeFiles/InformeLib.dir
-/home/user/Escritorio/IS/src/build/System/Informe/CMakeFiles/edit_cache.dir
-/home/user/Escritorio/IS/src/build/System/Informe/CMakeFiles/rebuild_cache.dir

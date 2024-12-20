@@ -168,19 +168,6 @@ SolicitudLib/fast:
 	$(MAKE) $(MAKESILENT) -f System/Solicitud/CMakeFiles/SolicitudLib.dir/build.make System/Solicitud/CMakeFiles/SolicitudLib.dir/build
 .PHONY : SolicitudLib/fast
 
-#=============================================================================
-# Target rules for targets named InformeLib
-
-# Build rule for target.
-InformeLib: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 InformeLib
-.PHONY : InformeLib
-
-# fast build rule for target.
-InformeLib/fast:
-	$(MAKE) $(MAKESILENT) -f System/Informe/CMakeFiles/InformeLib.dir/build.make System/Informe/CMakeFiles/InformeLib.dir/build
-.PHONY : InformeLib/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -189,7 +176,6 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... InformeLib"
 	@echo "... ProyectoIS"
 	@echo "... SolicitudLib"
 	@echo "... SystemLib"

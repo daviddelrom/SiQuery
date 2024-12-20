@@ -68,7 +68,7 @@ bool esFechaValida(const std::string &curso)
 void modificarSolicitudSicueProfesor(Profesor profe)
 {
     System system; // Crear una instancia de la clase System
-    std::string Curso = system.obtenerCursosDeSolicitudes(profe.getUsuario());
+    std::string Curso;
     std::vector<std::string> solicitudes = system.obtenerUniversidadesYaSolicitadas(profe.getUsuario());
 
     // Verificar si el profesor tiene solicitudes SICUE previas
@@ -472,3 +472,140 @@ void solicitudSicueAlumno(Alumno alumno)
         return;
     }
 }
+
+void modificarSolicitudSicueAlumno(Alumno alumno)
+{
+    System system; // Crear una instancia de la clase System
+    int id_alumno_aux = system.obtenerIdUsuarioPorUsuario(alumno.getUsuario());
+    std::string Curso = system.obtenerCursoAcademicoPorIdUsuario(id_alumno_aux);
+    std::vector<std::string> solicitudes = system.obtenerUniversidadesYaSolicitadasAlumno(alumno.getUsuario());
+
+    // Verificar si el alumno tiene solicitudes SICUE previas
+    if (solicitudes.empty())
+    {
+        std::cout << "No tiene solicitudes SICUE previas.\n";
+        return;
+    }
+
+    // Mostrar las solicitudes existentes
+    std::cout << "Seleccione la solicitud que desea modificar:\n";
+    for (size_t i = 0; i < solicitudes.size(); ++i)
+    {
+        std::cout << i + 1 << ". Universidad de destino: " << solicitudes[i] << ", Curso: " << Curso << std::endl;
+    }
+
+    int seleccion;
+    std::cout << "Ingrese el número de la solicitud que desea modificar (0 para cancelar): ";
+    std::cin >> seleccion;
+
+    // Validación de la selección
+    if (seleccion == 0)
+    {
+        std::cout << "Modificación cancelada.\n";
+        return;
+    }
+
+    // Verificar si la selección es válida
+    if (seleccion < 1 || seleccion > solicitudes.size())
+    {
+        std::cout << "Selección inválida. Modificación cancelada.\n";
+        return;
+    }
+
+    // Mostrar los campos que se pueden modificar
+    std::string universidadDestinoActualAModificar = solicitudes[seleccion - 1]; // Obtener la universidad de destino seleccionada
+    std::string cursoActual = Curso;
+
+    // Modificar el curso (si lo desea modificar)
+    std::string nuevoCurso;
+    std::cout << "Curso actual: " << cursoActual << "\n";
+    std::cout << "Introduzca el nuevo curso (YYYY/YYYY) o presione Enter para mantener el anterior: ";
+    std::cin.ignore(); // Limpiar el buffer de entrada
+    std::getline(std::cin, nuevoCurso);
+    // Si no se introdujo un nuevo curso, mantener el anterior
+    if (nuevoCurso.empty())
+    {
+        nuevoCurso = cursoActual;
+    }
+
+    // Filtrar las universidades disponibles
+    int alumno_id = system.obtenerIdUsuarioPorUsuario(alumno.getUsuario());
+    std::string nombre_carrera = system.obtenerCarreraPorIdUsuario(alumno_id);
+    std::string nombre_universidad = system.obtenerNombreUniversidadPorCarrera(nombre_carrera);
+    std::string campo = system.obtenerCampoPorCarrera(nombre_carrera);
+
+    // Obtener universidades con plazas disponibles para el campo
+    std::vector<std::string> universidadesPosibles = system.obtenerUniversidadesConPlazasDisponiblesParaAlumno(campo, system.obtenerAnyoAcademicoPorIdUsuario(alumno_id));
+
+    // Eliminar universidades ya solicitadas y la universidad actual en la que el alumno está
+    universidadesPosibles.erase(std::remove_if(universidadesPosibles.begin(), universidadesPosibles.end(),
+                                               [&solicitudes, universidadDestinoActualAModificar](const std::string &universidad)
+                                               {
+                                                   return std::find(solicitudes.begin(), solicitudes.end(), universidad) != solicitudes.end() || universidad == universidadDestinoActualAModificar;
+                                               }),
+                                universidadesPosibles.end());
+
+    // Declarar la variable nuevaUniversidadDestino antes de la validación
+    std::string nuevaUniversidadDestino = universidadDestinoActualAModificar; // Inicializarla con la universidad actual
+
+    // Verificar si hay universidades disponibles
+    if (universidadesPosibles.empty())
+    {
+        std::cout << "No hay universidades disponibles para su campo que no haya solicitado o en las que ya esté.\n";
+        std::cout << "Pasando al siguiente paso...\n";
+    }
+    else
+    {
+        // Mostrar las universidades disponibles solo si hay alguna
+        std::cout << "Universidades disponibles para su campo (que no ha solicitado y no está en su universidad actual):\n";
+        for (size_t i = 0; i < universidadesPosibles.size(); ++i)
+        {
+            std::cout << i + 1 << ". " << universidadesPosibles[i] << std::endl;
+        }
+
+        std::cout << "Universidad de destino actual: " << universidadDestinoActualAModificar << "\n";
+        std::cout << "Introduzca la nueva universidad de destino o presione Enter para mantener la anterior: ";
+        std::getline(std::cin, nuevaUniversidadDestino);
+
+        // Si no se introdujo una nueva universidad, mantener la anterior
+        if (nuevaUniversidadDestino.empty())
+        {
+            nuevaUniversidadDestino = universidadDestinoActualAModificar;
+        }
+        // Si no se ha realizado ninguna modificación, no hacemos nada
+        if (nuevoCurso == cursoActual && nuevaUniversidadDestino == universidadDestinoActualAModificar)
+        {
+            std::cout << "No se han realizado cambios en la solicitud.\n";
+            return;
+        }
+
+        // Realizamos la modificación de la solicitud
+        system.modificarSolicitudSicueProfesor(alumno.getUsuario(), nuevoCurso, nuevaUniversidadDestino);
+    }
+}
+
+void mostrarMenuAdmin() {
+        int opcion;
+        System system;
+        while (true) {
+            std::cout << "\n--- Menú Administrador ---" << std::endl;
+            std::cout << "1. Consultar plazas" << std::endl;
+            std::cout << "2. Salir" << std::endl;
+            std::cout << "Seleccione una opción: ";
+            std::cin >> opcion;
+
+            switch (opcion) {
+                case 1:
+                    system.consultarPlazas();  // Llamada a la función que consulta las plazas
+                    break;
+                case 2:
+                    std::cout << "Saliendo del sistema... ¡Hasta luego!" << std::endl;
+                    return;  // Sale del bucle y termina la ejecución
+                default:
+                    std::cout << "Opción no válida. Intente nuevamente." << std::endl;
+                    break;
+            }
+        }
+    }
+
+

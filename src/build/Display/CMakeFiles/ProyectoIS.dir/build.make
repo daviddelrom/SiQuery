@@ -111,7 +111,6 @@ source/bin/ProyectoIS: Display/CMakeFiles/ProyectoIS.dir/build.make
 source/bin/ProyectoIS: source/obj/libSystemLib.a
 source/bin/ProyectoIS: source/obj/libUsuarioLib.a
 source/bin/ProyectoIS: source/obj/libSolicitudLib.a
-source/bin/ProyectoIS: source/obj/libInformeLib.a
 source/bin/ProyectoIS: Display/CMakeFiles/ProyectoIS.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/user/Escritorio/IS/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable ../source/bin/ProyectoIS"
 	cd /home/user/Escritorio/IS/src/build/Display && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ProyectoIS.dir/link.txt --verbose=$(VERBOSE)

@@ -52,8 +52,3 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/user/Escritorio/IS/src/build/System/Solicitud/cmake_install.cmake")
 endif()
 
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("/home/user/Escritorio/IS/src/build/System/Informe/cmake_install.cmake")
-endif()
-

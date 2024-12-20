@@ -16,4 +16,6 @@ void solicitudSicueProfesor(Profesor profe);
 void solicitudSicueAlumno(Alumno alumno);
 
 void mostrarMenuAlumno();
+void modificarSolicitudSicueAlumno(Alumno alumno);
+void mostrarMenuAdmin();
 #endif

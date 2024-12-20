@@ -42,7 +42,8 @@ CREATE TABLE IF NOT EXISTS User (
     tipo_user ENUM('admin', 'alumno', 'profesor') NOT NULL,  -- Tipo de usuario
     curso_academico VARCHAR(255),                    -- Año o periodo académico
     universidad_origen INT,                          -- ID de universidad origen (no relacional)
-    universidad_destino INT                          -- ID de universidad destino (no relacional)
+    universidad_destino INT,                          -- ID de universidad destino (no relacional)
+    curso_año_academico VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS Alumno (
@@ -151,17 +152,18 @@ INSERT INTO Titulacion (universidad_id, departamento) VALUES
 (6, 'Psicología Clínica');
 
 -- Inserciones para la tabla User con las universidades y tipos de usuario correctamente asignados
-INSERT INTO User (nombre, password, tipo_user, curso_academico, universidad_origen, universidad_destino) VALUES 
-('Juan Pérez', 'password123', 'alumno', '1', 1, 2), 
-('Laura Sánchez', 'password321', 'alumno', '2', 3, 4), 
-('Carlos García', 'password456', 'profesor', '3', 5, 6), 
-('Ana López', 'password654', 'alumno', '4', 7, 8), 
-('Pedro Martínez', 'password789', 'profesor', '2', 9, 10), 
-('María Rodríguez', 'password987', 'alumno', '1', 2, 1), 
-('Luis Fernández', 'password654', 'profesor', '4', 6, 7), 
-('Pedro López', 'password321', 'alumno', '3', 8, 9), 
-('Isabel García', 'password123', 'alumno', '2', 10, 5), 
-('Raúl Pérez', 'password000', 'profesor', '4', 4, 6);
+INSERT INTO User (nombre, password, tipo_user, curso_academico, universidad_origen, universidad_destino, curso_año_academico) VALUES 
+('Juan Pérez', 'password123', 'alumno', '1', 1, 2, '2025/2026'), 
+('Laura Sánchez', 'password321', 'alumno', '2', 3, 4, '2025/2026'), 
+('Carlos García', 'password456', 'profesor', '3', 5, 6, '2025/2026'), 
+('Ana López', 'password654', 'alumno', '4', 7, 8, '2025/2026'), 
+('Pedro Martínez', 'password789', 'profesor', '2', 9, 10, '2025/2026'), 
+('María Rodríguez', 'password987', 'alumno', '1', 2, 1, '2025/2026'), 
+('Luis Fernández', 'password654', 'profesor', '4', 6, 7, '2025/2026'), 
+('Pedro López', 'password321', 'alumno', '3', 8, 9, '2025/2026'), 
+('Isabel García', 'password123', 'alumno', '2', 10, 5, '2025/2026'), 
+('Raúl Pérez', 'password000', 'profesor', '4', 4, 6, '2025/2026');
+
 
 -- Inserciones para la tabla Alumno relacionando el `user_id` y las carreras con el año académico
 INSERT INTO Alumno (user_id, carrera, año_academico) VALUES 
@@ -205,3 +207,6 @@ VALUES
 ('Universidad de Valencia', 'Av. Blasco Ibáñez, 13', 'Valencia', 1, 0, 1, 0),
 ('Universidad de Oviedo', 'Calle San Francisco, 3', 'Oviedo', 1, 0, 1, 0),
 ('Universidad de Alicante', 'Calle San Vicente del Raspeig, s/n', 'Alicante', 1, 0, 1, 0);
+
+INSERT INTO User (nombre, password, tipo_user, curso_academico, universidad_origen, universidad_destino) 
+VALUES ('admin', 'adminpassword', 'admin', NULL, NULL, NULL);

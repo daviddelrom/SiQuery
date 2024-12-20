@@ -10,7 +10,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/user/Escritorio/IS/src/CMakeLists.txt"
   "/home/user/Escritorio/IS/src/Display/CMakeLists.txt"
   "/home/user/Escritorio/IS/src/System/CMakeLists.txt"
-  "/home/user/Escritorio/IS/src/System/Informe/CMakeLists.txt"
   "/home/user/Escritorio/IS/src/System/Solicitud/CMakeLists.txt"
   "/home/user/Escritorio/IS/src/System/Usuario/CMakeLists.txt"
   "CMakeFiles/3.25.1/CMakeCXXCompiler.cmake"
@@ -44,7 +43,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "System/CMakeFiles/CMakeDirectoryInformation.cmake"
   "System/Usuario/CMakeFiles/CMakeDirectoryInformation.cmake"
   "System/Solicitud/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "System/Informe/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -53,5 +51,4 @@ set(CMAKE_DEPEND_INFO_FILES
   "System/CMakeFiles/SystemLib.dir/DependInfo.cmake"
   "System/Usuario/CMakeFiles/UsuarioLib.dir/DependInfo.cmake"
   "System/Solicitud/CMakeFiles/SolicitudLib.dir/DependInfo.cmake"
-  "System/Informe/CMakeFiles/InformeLib.dir/DependInfo.cmake"
   )

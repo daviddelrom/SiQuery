@@ -99,36 +99,18 @@ Display/clean: Display/CMakeFiles/ProyectoIS.dir/clean
 System/all: System/CMakeFiles/SystemLib.dir/all
 System/all: System/Usuario/all
 System/all: System/Solicitud/all
-System/all: System/Informe/all
 .PHONY : System/all
 
 # Recursive "preinstall" directory target.
 System/preinstall: System/Usuario/preinstall
 System/preinstall: System/Solicitud/preinstall
-System/preinstall: System/Informe/preinstall
 .PHONY : System/preinstall
 
 # Recursive "clean" directory target.
 System/clean: System/CMakeFiles/SystemLib.dir/clean
 System/clean: System/Usuario/clean
 System/clean: System/Solicitud/clean
-System/clean: System/Informe/clean
 .PHONY : System/clean
-
-#=============================================================================
-# Directory level rules for directory System/Informe
-
-# Recursive "all" directory target.
-System/Informe/all: System/Informe/CMakeFiles/InformeLib.dir/all
-.PHONY : System/Informe/all
-
-# Recursive "preinstall" directory target.
-System/Informe/preinstall:
-.PHONY : System/Informe/preinstall
-
-# Recursive "clean" directory target.
-System/Informe/clean: System/Informe/CMakeFiles/InformeLib.dir/clean
-.PHONY : System/Informe/clean
 
 #=============================================================================
 # Directory level rules for directory System/Solicitud
@@ -167,15 +149,14 @@ System/Usuario/clean: System/Usuario/CMakeFiles/UsuarioLib.dir/clean
 Display/CMakeFiles/ProyectoIS.dir/all: System/CMakeFiles/SystemLib.dir/all
 Display/CMakeFiles/ProyectoIS.dir/all: System/Usuario/CMakeFiles/UsuarioLib.dir/all
 Display/CMakeFiles/ProyectoIS.dir/all: System/Solicitud/CMakeFiles/SolicitudLib.dir/all
-Display/CMakeFiles/ProyectoIS.dir/all: System/Informe/CMakeFiles/InformeLib.dir/all
 	$(MAKE) $(MAKESILENT) -f Display/CMakeFiles/ProyectoIS.dir/build.make Display/CMakeFiles/ProyectoIS.dir/depend
 	$(MAKE) $(MAKESILENT) -f Display/CMakeFiles/ProyectoIS.dir/build.make Display/CMakeFiles/ProyectoIS.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/user/Escritorio/IS/src/build/CMakeFiles --progress-num=3,4,5 "Built target ProyectoIS"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/user/Escritorio/IS/src/build/CMakeFiles --progress-num=1,2,3 "Built target ProyectoIS"
 .PHONY : Display/CMakeFiles/ProyectoIS.dir/all
 
 # Build rule for subdir invocation for target.
 Display/CMakeFiles/ProyectoIS.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/Escritorio/IS/src/build/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/Escritorio/IS/src/build/CMakeFiles 13
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Display/CMakeFiles/ProyectoIS.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/Escritorio/IS/src/build/CMakeFiles 0
 .PHONY : Display/CMakeFiles/ProyectoIS.dir/rule
@@ -195,15 +176,14 @@ Display/CMakeFiles/ProyectoIS.dir/clean:
 # All Build rule for target.
 System/CMakeFiles/SystemLib.dir/all: System/Usuario/CMakeFiles/UsuarioLib.dir/all
 System/CMakeFiles/SystemLib.dir/all: System/Solicitud/CMakeFiles/SolicitudLib.dir/all
-System/CMakeFiles/SystemLib.dir/all: System/Informe/CMakeFiles/InformeLib.dir/all
 	$(MAKE) $(MAKESILENT) -f System/CMakeFiles/SystemLib.dir/build.make System/CMakeFiles/SystemLib.dir/depend
 	$(MAKE) $(MAKESILENT) -f System/CMakeFiles/SystemLib.dir/build.make System/CMakeFiles/SystemLib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/user/Escritorio/IS/src/build/CMakeFiles --progress-num=9,10 "Built target SystemLib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/user/Escritorio/IS/src/build/CMakeFiles --progress-num=7,8 "Built target SystemLib"
 .PHONY : System/CMakeFiles/SystemLib.dir/all
 
 # Build rule for subdir invocation for target.
 System/CMakeFiles/SystemLib.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/Escritorio/IS/src/build/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/Escritorio/IS/src/build/CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 System/CMakeFiles/SystemLib.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/Escritorio/IS/src/build/CMakeFiles 0
 .PHONY : System/CMakeFiles/SystemLib.dir/rule
@@ -224,7 +204,7 @@ System/CMakeFiles/SystemLib.dir/clean:
 System/Usuario/CMakeFiles/UsuarioLib.dir/all:
 	$(MAKE) $(MAKESILENT) -f System/Usuario/CMakeFiles/UsuarioLib.dir/build.make System/Usuario/CMakeFiles/UsuarioLib.dir/depend
 	$(MAKE) $(MAKESILENT) -f System/Usuario/CMakeFiles/UsuarioLib.dir/build.make System/Usuario/CMakeFiles/UsuarioLib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/user/Escritorio/IS/src/build/CMakeFiles --progress-num=11,12,13,14,15 "Built target UsuarioLib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/user/Escritorio/IS/src/build/CMakeFiles --progress-num=9,10,11,12,13 "Built target UsuarioLib"
 .PHONY : System/Usuario/CMakeFiles/UsuarioLib.dir/all
 
 # Build rule for subdir invocation for target.
@@ -250,7 +230,7 @@ System/Usuario/CMakeFiles/UsuarioLib.dir/clean:
 System/Solicitud/CMakeFiles/SolicitudLib.dir/all:
 	$(MAKE) $(MAKESILENT) -f System/Solicitud/CMakeFiles/SolicitudLib.dir/build.make System/Solicitud/CMakeFiles/SolicitudLib.dir/depend
 	$(MAKE) $(MAKESILENT) -f System/Solicitud/CMakeFiles/SolicitudLib.dir/build.make System/Solicitud/CMakeFiles/SolicitudLib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/user/Escritorio/IS/src/build/CMakeFiles --progress-num=6,7,8 "Built target SolicitudLib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/user/Escritorio/IS/src/build/CMakeFiles --progress-num=4,5,6 "Built target SolicitudLib"
 .PHONY : System/Solicitud/CMakeFiles/SolicitudLib.dir/all
 
 # Build rule for subdir invocation for target.
@@ -268,32 +248,6 @@ SolicitudLib: System/Solicitud/CMakeFiles/SolicitudLib.dir/rule
 System/Solicitud/CMakeFiles/SolicitudLib.dir/clean:
 	$(MAKE) $(MAKESILENT) -f System/Solicitud/CMakeFiles/SolicitudLib.dir/build.make System/Solicitud/CMakeFiles/SolicitudLib.dir/clean
 .PHONY : System/Solicitud/CMakeFiles/SolicitudLib.dir/clean
-
-#=============================================================================
-# Target rules for target System/Informe/CMakeFiles/InformeLib.dir
-
-# All Build rule for target.
-System/Informe/CMakeFiles/InformeLib.dir/all:
-	$(MAKE) $(MAKESILENT) -f System/Informe/CMakeFiles/InformeLib.dir/build.make System/Informe/CMakeFiles/InformeLib.dir/depend
-	$(MAKE) $(MAKESILENT) -f System/Informe/CMakeFiles/InformeLib.dir/build.make System/Informe/CMakeFiles/InformeLib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/user/Escritorio/IS/src/build/CMakeFiles --progress-num=1,2 "Built target InformeLib"
-.PHONY : System/Informe/CMakeFiles/InformeLib.dir/all
-
-# Build rule for subdir invocation for target.
-System/Informe/CMakeFiles/InformeLib.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/Escritorio/IS/src/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 System/Informe/CMakeFiles/InformeLib.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/Escritorio/IS/src/build/CMakeFiles 0
-.PHONY : System/Informe/CMakeFiles/InformeLib.dir/rule
-
-# Convenience name for target.
-InformeLib: System/Informe/CMakeFiles/InformeLib.dir/rule
-.PHONY : InformeLib
-
-# clean rule for target.
-System/Informe/CMakeFiles/InformeLib.dir/clean:
-	$(MAKE) $(MAKESILENT) -f System/Informe/CMakeFiles/InformeLib.dir/build.make System/Informe/CMakeFiles/InformeLib.dir/clean
-.PHONY : System/Informe/CMakeFiles/InformeLib.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

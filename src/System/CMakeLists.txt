@@ -1,7 +1,6 @@
 # Agregar subdirectorios
 add_subdirectory(Usuario)
 add_subdirectory(Solicitud)
-add_subdirectory(Informe)
 
 # Archivos fuente del módulo system
 set(SYSTEM_SOURCES System.cpp)
@@ -16,4 +15,4 @@ target_include_directories(SystemLib PUBLIC /usr/include/mysql-cppconn/jdbc)
 target_link_libraries(SystemLib mysqlcppconn)
 
 # Enlazar con las bibliotecas de subdirectorios y mysqlcppconn
-target_link_libraries(SystemLib mysqlcppconn UsuarioLib SolicitudLib InformeLib)
+target_link_libraries(SystemLib mysqlcppconn UsuarioLib SolicitudLib)

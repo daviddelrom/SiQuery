@@ -67,5 +67,8 @@ public:
     bool esPlazaDisponibleParaCurso(const std::string &universidad, const std::string &carrera, int añoCurso);
     std::string obtenerNombreUniversidadPorCarrera(const std::string &carrera);
     std::string obtenerCampoPorCarrera(const std::string &nombre_carrera);
+    void modificarSolicitudSicueAlumno(const std::string &nombre_solicitante, const std::string &nuevoCurso, const std::string &nuevaUniversidadDestino);
+    int obtenerUniversidad(int universidad_id);
+    void consultarPlazas();
 };
 #endif

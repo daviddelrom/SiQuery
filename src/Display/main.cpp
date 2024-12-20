@@ -93,7 +93,7 @@ int main()
                         }
                         else if (opcion_alumno == "2")
                         {
-                            
+                            modificarSolicitudSicueAlumno(alumno);
                             return 0;
                         }
                         else if (opcion_alumno == "3")
@@ -110,6 +110,7 @@ int main()
                 else
                 {
                     std::cout << "\n¡Bienvenido Administrador!" << std::endl;
+                    mostrarMenuAdmin();
                 }
             }
             else if (resultado == -1)

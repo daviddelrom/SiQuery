@@ -498,13 +498,13 @@ void System::actualizarPlazasOcupadas(const std::string &universidadOrigen, cons
 
         // Primero, decrementamos las plazas ocupadas en la universidad de origen
         sql::PreparedStatement *stmtDecrementar = conn->prepareStatement(
-            "UPDATE Universidad SET plazas_ocupadas = plazas_ocupadas - 1 WHERE nombre = ?");
+            "UPDATE Universidad SET numero_ocupados_alumnos = numero_ocupados_alumnos - 1 WHERE nombre = ?");
         stmtDecrementar->setString(1, universidadOrigen);
         stmtDecrementar->executeUpdate();
 
         // Luego, incrementamos las plazas ocupadas en la nueva universidad de destino
         sql::PreparedStatement *stmtIncrementar = conn->prepareStatement(
-            "UPDATE Universidad SET plazas_ocupadas = plazas_ocupadas + 1 WHERE nombre = ?");
+            "UPDATE Universidad SET numero_ocupados_alumnos = numero_ocupados_alumnos + 1 WHERE nombre = ?");
         stmtIncrementar->setString(1, universidadDestino);
         stmtIncrementar->executeUpdate();
 
@@ -524,7 +524,7 @@ void System::modificarSolicitudSicueProfesor(const std::string &nombre_solicitan
         sql::Connection *conn = this->getConnection(); // Obtener conexión a la base de datos
         // Preparar la consulta SQL para buscar la solicitud del solicitante en la tabla
         sql::PreparedStatement *stmt = conn->prepareStatement(
-            "SELECT * FROM SolicitudSicueProfesor WHERE nombre_solicitante = ?");
+            "SELECT * FROM SolicitudSicueALUMNO WHERE nombre_solicitante = ?");
 
         // Establecer el parámetro para el nombre del solicitante
         stmt->setString(1, nombre_solicitante);
@@ -559,7 +559,7 @@ void System::modificarSolicitudSicueProfesor(const std::string &nombre_solicitan
 
         // Preparar la consulta SQL para actualizar la solicitud
         sql::PreparedStatement *updateStmt = conn->prepareStatement(
-            "UPDATE SolicitudSicueProfesor SET curso = ?, universidad_destino = ? WHERE nombre_solicitante = ?");
+            "UPDATE SolicitudSicueALUMNO SET curso = ?, universidad_destino = ? WHERE nombre_solicitante = ?");
 
         // Establecer los parámetros de la consulta UPDATE
         updateStmt->setString(1, nuevoCursoModificado);
@@ -1089,7 +1089,7 @@ std::vector<std::string> System::obtenerUniversidadesYaSolicitadasAlumno(const s
         // Preparar la consulta SQL
         sql::PreparedStatement *stmtSolicitudes = this->getConnection()->prepareStatement(
             "SELECT DISTINCT universidad_destino "
-            "FROM SolicitudSicueAlumno "
+            "FROM SolicitudSicueALUMNO "
             "WHERE solicitante_id = ?");
 
         stmtSolicitudes->setInt(1, solicitante_id);
@@ -1195,4 +1195,182 @@ std::string System::obtenerCampoPorCarrera(const std::string &nombre_carrera)
     }
 
     return ""; // Si ocurre un error o no se encuentra la carrera, devolver una cadena vacía
+}
+
+void System::modificarSolicitudSicueAlumno(const std::string &nombre_solicitante, const std::string &nuevoCurso, const std::string &nuevaUniversidadDestino)
+{
+    try
+    {
+        System system;                                 // Crear una instancia de la clase System
+        sql::Connection *conn = this->getConnection(); // Obtener conexión a la base de datos
+        // Preparar la consulta SQL para buscar la solicitud del solicitante en la tabla
+        sql::PreparedStatement *stmt = conn->prepareStatement(
+            "SELECT * FROM SolicitudSicueALUMNO WHERE nombre_solicitante = ?");
+
+        // Establecer el parámetro para el nombre del solicitante
+        stmt->setString(1, nombre_solicitante);
+
+        // Ejecutar la consulta
+        sql::ResultSet *res = stmt->executeQuery();
+
+        // Verificar si se encontró la solicitud
+        if (!res->next())
+        {
+            std::cout << "No se encontró una solicitud para el solicitante: " << nombre_solicitante << std::endl;
+            delete stmt;
+            delete res;
+            return;
+        }
+
+        // Obtener los datos actuales de la solicitud
+        std::string universidadOrigen = res->getString("universidad_origen");
+        std::string universidadDestino = res->getString("universidad_destino");
+        std::string cursoActual = res->getString("curso");
+
+        // Modificar los campos solicitados por el usuario
+        std::string nuevoCursoModificado = nuevoCurso.empty() ? cursoActual : nuevoCurso;
+        std::string nuevaUniversidadDestinoModificada = nuevaUniversidadDestino.empty() ? universidadDestino : nuevaUniversidadDestino;
+
+        // Si se ha cambiado la universidad de destino, actualizamos las plazas ocupadas
+        if (nuevaUniversidadDestinoModificada != universidadDestino)
+        {
+            // Llamamos a la función para actualizar las plazas ocupadas en la base de datos
+            system.actualizarPlazasOcupadas(universidadDestino, nuevaUniversidadDestinoModificada);
+        }
+
+        // Preparar la consulta SQL para actualizar la solicitud
+        sql::PreparedStatement *updateStmt = conn->prepareStatement(
+            "UPDATE SolicitudSicueALUMNO SET curso = ?, universidad_destino = ? WHERE nombre_solicitante = ?");
+
+        // Establecer los parámetros de la consulta UPDATE
+        updateStmt->setString(1, nuevoCursoModificado);
+        updateStmt->setString(2, nuevaUniversidadDestinoModificada);
+        updateStmt->setString(3, nombre_solicitante);
+
+        // Ejecutar la consulta de actualización
+        int rowsUpdated = updateStmt->executeUpdate();
+
+        // Verificar si se actualizó correctamente
+        if (rowsUpdated > 0)
+        {
+            std::cout << "La solicitud ha sido modificada correctamente.\n";
+        }
+        else
+        {
+            std::cout << "No se pudo modificar la solicitud.\n";
+        }
+
+        // Liberar los recursos
+        delete stmt;
+        delete res;
+        delete updateStmt;
+    }
+    catch (sql::SQLException &e)
+    {
+        std::cerr << "Error al conectar o modificar la base de datos: " << e.what() << std::endl;
+    }
+}
+
+int System::obtenerUniversidad(int universidad_id)
+{
+    try
+    {
+        // Preparar la consulta SQL para obtener todos los datos de la universidad
+        sql::PreparedStatement *stmt = this->getConnection()->prepareStatement(
+            "SELECT * FROM Universidad WHERE universidad_id = ?");
+
+        // Establece el ID de la universidad en la consulta
+        stmt->setInt(1, universidad_id);
+
+        // Ejecutar la consulta
+        sql::ResultSet *res = stmt->executeQuery();
+
+        if (res->next()) // Si se encuentra la universidad
+        {
+            // Obtener los datos de la universidad
+            int id = res->getInt("universidad_id");
+            std::string nombre = res->getString("nombre");
+            std::string direccion = res->getString("direccion");
+            std::string ciudad = res->getString("ciudad");
+            int maximo_alumnos = res->getInt("maximo_alumnos");
+            int numero_ocupados_alumnos = res->getInt("numero_ocupados_alumnos");
+            int maximo_profesores = res->getInt("maximo_profesores");
+            int numero_ocupados_profesores = res->getInt("numero_ocupados_profesores");
+
+            // Imprimir los detalles de la universidad
+            std::cout << "Universidad ID: " << id << std::endl;
+            std::cout << "Nombre: " << nombre << std::endl;
+            std::cout << "Dirección: " << direccion << std::endl;
+            std::cout << "Ciudad: " << ciudad << std::endl;
+            std::cout << "Máximo Alumnos: " << maximo_alumnos << std::endl;
+            std::cout << "Plazas Ocupadas (Alumnos): " << numero_ocupados_alumnos << std::endl;
+            std::cout << "Máximo Profesores: " << maximo_profesores << std::endl;
+            std::cout << "Plazas Ocupadas (Profesores): " << numero_ocupados_profesores << std::endl;
+
+            // Limpiar recursos
+            delete stmt;
+            delete res;
+            return 1; // Universidad encontrada y mostrada
+        }
+        else
+        {
+            // Si no se encuentra la universidad
+            delete stmt;
+            delete res;
+            return -2; // Universidad no encontrada
+        }
+    }
+    catch (sql::SQLException &e)
+    {
+        std::cerr << "Error al conectar o consultar la base de datos: " << e.what() << std::endl;
+        return 0; // Error de conexión o consulta
+    }
+}
+
+void System::consultarPlazas()
+{
+    try
+    {
+        // Preparar la consulta SQL para obtener todas las universidades
+        sql::PreparedStatement *stmt = this->getConnection()->prepareStatement(
+            "SELECT * FROM Universidad");
+
+        // Ejecutar la consulta
+        sql::ResultSet *res = stmt->executeQuery();
+
+        // Imprimir los resultados de las universidades
+        std::cout << "==================== Universidades ====================" << std::endl;
+        while (res->next()) // Recorre todas las universidades
+        {
+            // Obtener los datos de la universidad
+            int id = res->getInt("universidad_id");
+            std::string nombre = res->getString("nombre");
+            std::string direccion = res->getString("direccion");
+            std::string ciudad = res->getString("ciudad");
+            int maximo_alumnos = res->getInt("maximo_alumnos");
+            int numero_ocupados_alumnos = res->getInt("numero_ocupados_alumnos");
+            int maximo_profesores = res->getInt("maximo_profesores");
+            int numero_ocupados_profesores = res->getInt("numero_ocupados_profesores");
+
+            // Imprimir los detalles de cada universidad
+            std::cout << "--------------------------------------------------------" << std::endl;
+            std::cout << "Universidad ID: " << id << std::endl;
+            std::cout << "Nombre: " << nombre << std::endl;
+            std::cout << "Dirección: " << direccion << std::endl;
+            std::cout << "Ciudad: " << ciudad << std::endl;
+            std::cout << "Máximo Alumnos: " << maximo_alumnos << std::endl;
+            std::cout << "Plazas Ocupadas (Alumnos): " << numero_ocupados_alumnos << std::endl;
+            std::cout << "Máximo Profesores: " << maximo_profesores << std::endl;
+            std::cout << "Plazas Ocupadas (Profesores): " << numero_ocupados_profesores << std::endl;
+            std::cout << "--------------------------------------------------------" << std::endl;
+        }
+
+        // Limpiar recursos
+        delete stmt;
+        delete res;
+    }
+    catch (sql::SQLException &e)
+    {
+        std::cerr << "Error al conectar o consultar la base de datos: " << e.what() << std::endl;
+    }
 }
