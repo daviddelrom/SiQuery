@@ -8,15 +8,16 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/user/Escritorio/IS/src/Display/extern-functions.cpp" "Display/CMakeFiles/ProyectoIS.dir/extern-functions.cpp.o" "gcc" "Display/CMakeFiles/ProyectoIS.dir/extern-functions.cpp.o.d"
-  "/home/user/Escritorio/IS/src/Display/main.cpp" "Display/CMakeFiles/ProyectoIS.dir/main.cpp.o" "gcc" "Display/CMakeFiles/ProyectoIS.dir/main.cpp.o.d"
+  "/home/coruscant/Documents/is/SiQuery/src/Display/extern-functions.cpp" "Display/CMakeFiles/ProyectoIS.dir/extern-functions.cpp.o" "gcc" "Display/CMakeFiles/ProyectoIS.dir/extern-functions.cpp.o.d"
+  "/home/coruscant/Documents/is/SiQuery/src/Display/main.cpp" "Display/CMakeFiles/ProyectoIS.dir/main.cpp.o" "gcc" "Display/CMakeFiles/ProyectoIS.dir/main.cpp.o.d"
   )
 
-# Targets to which this target links.
-set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/user/Escritorio/IS/src/build/System/CMakeFiles/SystemLib.dir/DependInfo.cmake"
-  "/home/user/Escritorio/IS/src/build/System/Usuario/CMakeFiles/UsuarioLib.dir/DependInfo.cmake"
-  "/home/user/Escritorio/IS/src/build/System/Solicitud/CMakeFiles/SolicitudLib.dir/DependInfo.cmake"
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
+  )
+
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_FORWARD_LINKED_INFO_FILES
   )
 
 # Fortran module output directory.

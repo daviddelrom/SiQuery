@@ -1,4 +1,4 @@
-# Install script for directory: /home/user/Escritorio/IS/src/System/Solicitud
+# Install script for directory: /home/coruscant/Documents/is/SiQuery/src/System/Solicitud
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

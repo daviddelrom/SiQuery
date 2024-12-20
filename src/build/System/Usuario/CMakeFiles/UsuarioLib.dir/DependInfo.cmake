@@ -8,14 +8,18 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/user/Escritorio/IS/src/System/Usuario/Administrador.cpp" "System/Usuario/CMakeFiles/UsuarioLib.dir/Administrador.cpp.o" "gcc" "System/Usuario/CMakeFiles/UsuarioLib.dir/Administrador.cpp.o.d"
-  "/home/user/Escritorio/IS/src/System/Usuario/Alumno.cpp" "System/Usuario/CMakeFiles/UsuarioLib.dir/Alumno.cpp.o" "gcc" "System/Usuario/CMakeFiles/UsuarioLib.dir/Alumno.cpp.o.d"
-  "/home/user/Escritorio/IS/src/System/Usuario/Profesor.cpp" "System/Usuario/CMakeFiles/UsuarioLib.dir/Profesor.cpp.o" "gcc" "System/Usuario/CMakeFiles/UsuarioLib.dir/Profesor.cpp.o.d"
-  "/home/user/Escritorio/IS/src/System/Usuario/Usuario.cpp" "System/Usuario/CMakeFiles/UsuarioLib.dir/Usuario.cpp.o" "gcc" "System/Usuario/CMakeFiles/UsuarioLib.dir/Usuario.cpp.o.d"
+  "/home/coruscant/Documents/is/SiQuery/src/System/Usuario/Administrador.cpp" "System/Usuario/CMakeFiles/UsuarioLib.dir/Administrador.cpp.o" "gcc" "System/Usuario/CMakeFiles/UsuarioLib.dir/Administrador.cpp.o.d"
+  "/home/coruscant/Documents/is/SiQuery/src/System/Usuario/Alumno.cpp" "System/Usuario/CMakeFiles/UsuarioLib.dir/Alumno.cpp.o" "gcc" "System/Usuario/CMakeFiles/UsuarioLib.dir/Alumno.cpp.o.d"
+  "/home/coruscant/Documents/is/SiQuery/src/System/Usuario/Profesor.cpp" "System/Usuario/CMakeFiles/UsuarioLib.dir/Profesor.cpp.o" "gcc" "System/Usuario/CMakeFiles/UsuarioLib.dir/Profesor.cpp.o.d"
+  "/home/coruscant/Documents/is/SiQuery/src/System/Usuario/Usuario.cpp" "System/Usuario/CMakeFiles/UsuarioLib.dir/Usuario.cpp.o" "gcc" "System/Usuario/CMakeFiles/UsuarioLib.dir/Usuario.cpp.o.d"
   )
 
-# Targets to which this target links.
-set(CMAKE_TARGET_LINKED_INFO_FILES
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
+  )
+
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_FORWARD_LINKED_INFO_FILES
   )
 
 # Fortran module output directory.

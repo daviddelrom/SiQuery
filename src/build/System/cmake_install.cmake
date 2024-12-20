@@ -1,4 +1,4 @@
-# Install script for directory: /home/user/Escritorio/IS/src/System
+# Install script for directory: /home/coruscant/Documents/is/SiQuery/src/System
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,11 +44,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/user/Escritorio/IS/src/build/System/Usuario/cmake_install.cmake")
+  include("/home/coruscant/Documents/is/SiQuery/src/build/System/Usuario/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/user/Escritorio/IS/src/build/System/Solicitud/cmake_install.cmake")
+  include("/home/coruscant/Documents/is/SiQuery/src/build/System/Solicitud/cmake_install.cmake")
 endif()
 
