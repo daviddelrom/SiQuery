@@ -6,6 +6,8 @@
 #include <cppconn/prepared_statement.h>
 #include <iostream>
 #include <string>
+#include "../System/Solicitud/Solicitud.hpp" // Incluir las cabeceras de las clases
+#include "../System/Solicitud/SolicitudSicue.hpp"
 
 class System
 {
@@ -42,7 +44,28 @@ public:
     // Función para obtener tipo de Usuario 0 = Profesor 1 = Alumno 2 = Administrador
     int obtenerTipoUsuario(const std::string &usuario);
 
-    //Función para obtener la lista de Universidades para hacer Sicue disponibles
-    std::vector<std::string> obtenerUniversidadesConPlazasDisponiblesParaProfesor();
+    std::string obtenerDepartamentoProfesor(const std::string &username);
+    std::vector<std::string> obtenerUniversidadesConPlazasDisponiblesParaProfesor(const std::string &departamento);
+    void insertarSolicitudesSicueProfesor(int solicitante_id, const std::string &nombre_solicitante, const std::string &universidad_origen, const std::vector<std::string> &universidades_destino, const std::string &departamento, const std::string &curso);
+    int obtenerUserIdPorNombre(const std::string &nombre);
+    std::vector<std::string> obtenerUniversidadesYaSolicitadas(const std::string &usuario);
+    void modificarSolicitudSicueProfesor(const std::string &nombre_solicitante, const std::string &nuevoCurso, const std::string &nuevaUniversidadDestino);
+    void actualizarPlazasOcupadas(const std::string &universidadOrigen, const std::string &universidadDestino);
+    std::string obtenerCursosDeSolicitudes(const std::string &solicitante_id);
+    bool tienePlazasDisponiblesParaProfesor(const std::string &universidad);
+    std::vector<std::string> obtenerUniversidadesConPlazasDisponiblesParaAlumno(const std::string &carrera);
+    std::string obtenerNombreUniversidadPorId(int universidadId);
+    int obtenerUniversidadOrigenProfesor(const std::string &nombreProfesor);
+    void insertarSolicitudesSicueAlumno(int solicitante_id, const std::string &nombre_solicitante, const std::string &universidad_origen, const std::vector<std::string> &universidades_destino, const std::string &carrera, const std::string &curso);
+    int obtenerIdUsuarioPorUsuario(const std::string &usuario);
+    std::string obtenerUniversidadOrigenPorIdUsuario(int idUsuario);
+    int obtenerAnyoAcademicoPorIdUsuario(int idUsuario);
+    int obtenerAñoCursoAlumno(const std::string &usuario, const std::string &carrera);
+    std::string obtenerCarreraPorIdUsuario(int userId);
+    std::string obtenerCursoAcademicoPorIdUsuario(int idUsuario);
+    std::vector<std::string> obtenerUniversidadesYaSolicitadasAlumno(const std::string &usuario);
+    bool esPlazaDisponibleParaCurso(const std::string &universidad, const std::string &carrera, int añoCurso);
+
+    std::string obtenerCampoPorCarrera(const std::string &nombre_carrera);
 };
 #endif

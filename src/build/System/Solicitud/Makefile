@@ -154,30 +154,6 @@ Solicitud.cpp.s:
 	cd /home/user/Escritorio/IS/src/build && $(MAKE) $(MAKESILENT) -f System/Solicitud/CMakeFiles/SolicitudLib.dir/build.make System/Solicitud/CMakeFiles/SolicitudLib.dir/Solicitud.cpp.s
 .PHONY : Solicitud.cpp.s
 
-SolicitudBeca.o: SolicitudBeca.cpp.o
-.PHONY : SolicitudBeca.o
-
-# target to build an object file
-SolicitudBeca.cpp.o:
-	cd /home/user/Escritorio/IS/src/build && $(MAKE) $(MAKESILENT) -f System/Solicitud/CMakeFiles/SolicitudLib.dir/build.make System/Solicitud/CMakeFiles/SolicitudLib.dir/SolicitudBeca.cpp.o
-.PHONY : SolicitudBeca.cpp.o
-
-SolicitudBeca.i: SolicitudBeca.cpp.i
-.PHONY : SolicitudBeca.i
-
-# target to preprocess a source file
-SolicitudBeca.cpp.i:
-	cd /home/user/Escritorio/IS/src/build && $(MAKE) $(MAKESILENT) -f System/Solicitud/CMakeFiles/SolicitudLib.dir/build.make System/Solicitud/CMakeFiles/SolicitudLib.dir/SolicitudBeca.cpp.i
-.PHONY : SolicitudBeca.cpp.i
-
-SolicitudBeca.s: SolicitudBeca.cpp.s
-.PHONY : SolicitudBeca.s
-
-# target to generate assembly for a file
-SolicitudBeca.cpp.s:
-	cd /home/user/Escritorio/IS/src/build && $(MAKE) $(MAKESILENT) -f System/Solicitud/CMakeFiles/SolicitudLib.dir/build.make System/Solicitud/CMakeFiles/SolicitudLib.dir/SolicitudBeca.cpp.s
-.PHONY : SolicitudBeca.cpp.s
-
 SolicitudSicue.o: SolicitudSicue.cpp.o
 .PHONY : SolicitudSicue.o
 
@@ -214,9 +190,6 @@ help:
 	@echo "... Solicitud.o"
 	@echo "... Solicitud.i"
 	@echo "... Solicitud.s"
-	@echo "... SolicitudBeca.o"
-	@echo "... SolicitudBeca.i"
-	@echo "... SolicitudBeca.s"
 	@echo "... SolicitudSicue.o"
 	@echo "... SolicitudSicue.i"
 	@echo "... SolicitudSicue.s"

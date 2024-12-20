@@ -16,11 +16,11 @@ private:
 
 public:
     // Constructor por defecto
-    User() : usuario(""), password("") {}
+    User() : usuario("") {}
 
     // Constructor parametrizado
-    User(const std::string &usuario, const std::string &password)
-        : usuario(usuario), password(password) {}
+    User(const std::string &usuario)
+        : usuario(usuario) {}
 
     // Getter para usuario
     std::string getUsuario() const

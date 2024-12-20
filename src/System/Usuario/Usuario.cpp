@@ -2,12 +2,12 @@
 
 // Crear y añadir una solicitud
 bool User::crearSolicitud(const std::string &tipoSolicitante,
-                          const std::string &universidadOrigen,
-                          const std::string &universidadDestino,
-                          const std::string &departamento,
-                          const std::map<std::pair<std::string, std::string>, int> &plazasPorCarrera,
-                          const std::map<std::string, int> &plazasPorDepartamento,
-                          const std::string &curso, const std::string &curso_Academico)
+                        const std::string &universidadOrigen,
+                        const std::string &universidadDestino,
+                        const std::string &departamento,
+                        const std::map<std::pair<std::string, std::string>, int> &plazasPorCarrera,
+                        const std::map<std::string, int> &plazasPorDepartamento,
+                        const std::string &curso, const std::string &curso_Academico)
 {
     if (tipoSolicitante == "Alumno")
     {
@@ -45,4 +45,5 @@ bool User::crearSolicitud(const std::string &tipoSolicitante,
         std::cout << "Tipo de solicitante inválido: \"" << tipoSolicitante << "\".\n";
         return false;
     }
+    return true;
 }

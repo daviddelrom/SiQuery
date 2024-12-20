@@ -250,8 +250,13 @@ System/CMakeFiles/SystemLib.dir/System.cpp.o: /home/user/Escritorio/IS/src/Syste
   /usr/include/inttypes.h \
   /usr/include/mysql-cppconn/jdbc/cppconn/resultset.h \
   /usr/include/mysql-cppconn/jdbc/cppconn/resultset_metadata.h \
-  /usr/include/mysql-cppconn/jdbc/cppconn/datatype.h
+  /usr/include/mysql-cppconn/jdbc/cppconn/datatype.h \
+  /home/user/Escritorio/IS/src/System/Solicitud/Solicitud.hpp \
+  /home/user/Escritorio/IS/src/System/Solicitud/SolicitudSicue.hpp \
+  /home/user/Escritorio/IS/src/System/Solicitud/Solicitud.hpp
 
+
+/home/user/Escritorio/IS/src/System/Solicitud/SolicitudSicue.hpp:
 
 /usr/include/mysql-cppconn/jdbc/cppconn/datatype.h:
 
@@ -380,6 +385,8 @@ System/CMakeFiles/SystemLib.dir/System.cpp.o: /home/user/Escritorio/IS/src/Syste
 /usr/include/wctype.h:
 
 /usr/include/x86_64-linux-gnu/bits/errno.h:
+
+/home/user/Escritorio/IS/src/System/Solicitud/Solicitud.hpp:
 
 /usr/include/errno.h:
 

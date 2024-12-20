@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/user/Escritorio/IS/src/Display/extern-functions.cpp" "Display/CMakeFiles/ProyectoIS.dir/extern-functions.cpp.o" "gcc" "Display/CMakeFiles/ProyectoIS.dir/extern-functions.cpp.o.d"
   "/home/user/Escritorio/IS/src/Display/main.cpp" "Display/CMakeFiles/ProyectoIS.dir/main.cpp.o" "gcc" "Display/CMakeFiles/ProyectoIS.dir/main.cpp.o.d"
   )
 

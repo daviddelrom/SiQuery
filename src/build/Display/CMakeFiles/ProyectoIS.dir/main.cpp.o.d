@@ -204,6 +204,9 @@ Display/CMakeFiles/ProyectoIS.dir/main.cpp.o: \
  /usr/include/mysql-cppconn/jdbc/cppconn/resultset.h \
  /usr/include/mysql-cppconn/jdbc/cppconn/resultset_metadata.h \
  /usr/include/mysql-cppconn/jdbc/cppconn/datatype.h \
+ /home/user/Escritorio/IS/src/Display/../System/../System/Solicitud/Solicitud.hpp \
+ /home/user/Escritorio/IS/src/Display/../System/../System/Solicitud/SolicitudSicue.hpp \
+ /home/user/Escritorio/IS/src/Display/../System/../System/Solicitud/Solicitud.hpp \
  /usr/include/c++/12/regex /usr/include/c++/12/bitset \
  /usr/include/c++/12/locale \
  /usr/include/c++/12/bits/locale_facets_nonio.h /usr/include/c++/12/ctime \
@@ -225,4 +228,10 @@ Display/CMakeFiles/ProyectoIS.dir/main.cpp.o: \
  /usr/include/c++/12/bits/regex_compiler.tcc \
  /usr/include/c++/12/bits/regex.h /usr/include/c++/12/bits/regex.tcc \
  /usr/include/c++/12/bits/regex_executor.h \
- /usr/include/c++/12/bits/regex_executor.tcc
+ /usr/include/c++/12/bits/regex_executor.tcc /usr/include/c++/12/limits \
+ /home/user/Escritorio/IS/src/Display/../System/Usuario/Usuario.hpp \
+ /home/user/Escritorio/IS/src/Display/../System/Usuario/../Solicitud/Solicitud.hpp \
+ /home/user/Escritorio/IS/src/Display/../System/Usuario/Profesor.hpp \
+ /home/user/Escritorio/IS/src/Display/../System/Usuario/Usuario.hpp \
+ /home/user/Escritorio/IS/src/Display/extern-functions.hpp \
+ /home/user/Escritorio/IS/src/Display/../System/Usuario/Alumno.hpp

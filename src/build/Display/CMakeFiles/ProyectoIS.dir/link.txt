@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/ProyectoIS.dir/main.cpp.o -o ../source/bin/ProyectoIS  ../source/obj/libSystemLib.a -lmysqlcppconn ../source/obj/libUsuarioLib.a ../source/obj/libSolicitudLib.a ../source/obj/libInformeLib.a 
+/usr/bin/c++ CMakeFiles/ProyectoIS.dir/main.cpp.o "CMakeFiles/ProyectoIS.dir/extern-functions.cpp.o" -o ../source/bin/ProyectoIS  ../source/obj/libSystemLib.a -lmysqlcppconn ../source/obj/libUsuarioLib.a ../source/obj/libSolicitudLib.a ../source/obj/libInformeLib.a 

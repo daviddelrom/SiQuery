@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "../source/bin/ProyectoIS"
   "../source/bin/ProyectoIS.pdb"
+  "CMakeFiles/ProyectoIS.dir/extern-functions.cpp.o"
+  "CMakeFiles/ProyectoIS.dir/extern-functions.cpp.o.d"
   "CMakeFiles/ProyectoIS.dir/main.cpp.o"
   "CMakeFiles/ProyectoIS.dir/main.cpp.o.d"
 )

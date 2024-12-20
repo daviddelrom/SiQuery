@@ -130,6 +130,30 @@ ProyectoIS/fast:
 	cd /home/user/Escritorio/IS/src/build && $(MAKE) $(MAKESILENT) -f Display/CMakeFiles/ProyectoIS.dir/build.make Display/CMakeFiles/ProyectoIS.dir/build
 .PHONY : ProyectoIS/fast
 
+extern-functions.o: extern-functions.cpp.o
+.PHONY : extern-functions.o
+
+# target to build an object file
+extern-functions.cpp.o:
+	cd /home/user/Escritorio/IS/src/build && $(MAKE) $(MAKESILENT) -f Display/CMakeFiles/ProyectoIS.dir/build.make Display/CMakeFiles/ProyectoIS.dir/extern-functions.cpp.o
+.PHONY : extern-functions.cpp.o
+
+extern-functions.i: extern-functions.cpp.i
+.PHONY : extern-functions.i
+
+# target to preprocess a source file
+extern-functions.cpp.i:
+	cd /home/user/Escritorio/IS/src/build && $(MAKE) $(MAKESILENT) -f Display/CMakeFiles/ProyectoIS.dir/build.make Display/CMakeFiles/ProyectoIS.dir/extern-functions.cpp.i
+.PHONY : extern-functions.cpp.i
+
+extern-functions.s: extern-functions.cpp.s
+.PHONY : extern-functions.s
+
+# target to generate assembly for a file
+extern-functions.cpp.s:
+	cd /home/user/Escritorio/IS/src/build && $(MAKE) $(MAKESILENT) -f Display/CMakeFiles/ProyectoIS.dir/build.make Display/CMakeFiles/ProyectoIS.dir/extern-functions.cpp.s
+.PHONY : extern-functions.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -163,6 +187,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... ProyectoIS"
+	@echo "... extern-functions.o"
+	@echo "... extern-functions.i"
+	@echo "... extern-functions.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

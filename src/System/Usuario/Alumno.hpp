@@ -16,11 +16,16 @@ private:
 
 public:
     // Constructor que inicializa tanto los parámetros heredados como los específicos del alumno
-    Alumno(const std::string &usuario, const std::string &password, const std::string &universidadOrigen,
-           const std::string &universidadDestino, const std::string &cursoAcademico, const std::string &titulacion)
-        : User(usuario, password), universidadOrigen(universidadOrigen), universidadDestino(universidadDestino),
-          cursoAcademico(cursoAcademico), titulacion(titulacion)
+     Alumno(const std::string &usuario,
+           const std::string &universidadOrigen,
+           const std::string &cursoAcademico,
+           const std::string &titulacion)
+        : User(usuario),  // Llama al constructor de la clase base User
+          universidadOrigen(universidadOrigen),
+          cursoAcademico(cursoAcademico),
+          titulacion(titulacion)
     {
+        
     }
 
     // Métodos getters para los atributos privados

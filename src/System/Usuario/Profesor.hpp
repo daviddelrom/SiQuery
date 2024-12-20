@@ -15,13 +15,9 @@ private:
     std::string departamento;       // Departamento al que pertenece el profesor
 
 public:
-    // Constructor que inicializa tanto los parámetros heredados como los específicos del profesor
-    Profesor(const std::string &usuario, const std::string &password, const std::string &universidadOrigen,
-             const std::string &universidadDestino, const std::string &cursoAcademico, const std::string &departamento)
-        : User(usuario, password), universidadOrigen(universidadOrigen), universidadDestino(universidadDestino),
-          cursoAcademico(cursoAcademico), departamento(departamento)
-    {
-    }
+    // Constructor que inicializa los parámetros mínimos del Profesor
+Profesor(const std::string &usuario, const std::string &universidadOrigen, const std::string &departamento)
+    : User(usuario), universidadOrigen(universidadOrigen), departamento(departamento) {}
 
     // Métodos getters para los atributos privados
     std::string getUniversidadOrigen() const { return universidadOrigen; }
@@ -29,6 +25,7 @@ public:
     std::string getCursoAcademico() const { return cursoAcademico; }
     std::string getDepartamento() const { return departamento; }
 
+    
     std::string tipoSolicitante() const 
     {
         return "Profesor";

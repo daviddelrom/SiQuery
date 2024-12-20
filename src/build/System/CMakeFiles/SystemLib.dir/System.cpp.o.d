@@ -205,4 +205,7 @@ System/CMakeFiles/SystemLib.dir/System.cpp.o: \
  /usr/include/mysql-cppconn/jdbc/cppconn/config.h /usr/include/inttypes.h \
  /usr/include/mysql-cppconn/jdbc/cppconn/resultset.h \
  /usr/include/mysql-cppconn/jdbc/cppconn/resultset_metadata.h \
- /usr/include/mysql-cppconn/jdbc/cppconn/datatype.h
+ /usr/include/mysql-cppconn/jdbc/cppconn/datatype.h \
+ /home/user/Escritorio/IS/src/System/../System/Solicitud/Solicitud.hpp \
+ /home/user/Escritorio/IS/src/System/../System/Solicitud/SolicitudSicue.hpp \
+ /home/user/Escritorio/IS/src/System/../System/Solicitud/Solicitud.hpp
